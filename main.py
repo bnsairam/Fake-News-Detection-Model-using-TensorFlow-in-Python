@@ -76,3 +76,18 @@ history = model.fit(
     validation_data=(test_sequences1, np.array(test_labels)), 
     verbose=2
 )
+history = model.fit(
+    training_sequences1, 
+    np.array(training_labels), 
+    epochs=50, 
+    validation_data=(test_sequences1, np.array(test_labels)), 
+    verbose=2
+)
+X = "Karry to go to France in gesture of sympathy"
+
+sequences = tokenizer1.texts_to_sequences([X])
+sequences = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)
+if model.predict(sequences, verbose=0)[0][0] >= 0.5:
+    print("This news is True")
+else:
+    print("This news is False")
